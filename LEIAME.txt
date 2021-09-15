@@ -1,0 +1,10 @@
+**************************************************
+AVA: cursos.alura.com.br
+Formação: Angular (Nova Formação de Maio/2021)
+Curso: Angular e RxJS: Programação reativa
+Data Início: 15/09/2021
+**************************************************
+
+Capítulo 01: Observables
+
+1. 
