@@ -5,6 +5,45 @@ Curso: Angular e RxJS: Programação reativa
 Data Início: 15/09/2021
 **************************************************
 
+OBS: O diretório do projeto possui 2 sub-diretórios: api (back-end) e byte-bank-broker (front-end)
+
 Capítulo 01: Observables
+
+1. Descompactamos o projeto dispoibilizado pelo material do curso em:
+    @see https://github.com/alura-cursos/alura_angular_rxjs_1/archive/master.zip
+2. Executamos no diretório do projeto:
+    >cd api
+    >npm install 
+    >npm start
+    >cd ../byte-bank-broker
+    >npm install
+    >ng serve --open
+3. Criamos o repositório remoto no "github.com" chamado "angular-rxjs", executando no diretório do projeto:
+    >git init
+    >git add .
+    >git commit -am "Consolidacao Inicial"
+    >git remote add github.com git@github.com:mmartinho/angular-rxjs.git
+    >git push -u github.com --all
+4. Subimos o back-end node (em um terminal), e o ambiente front-end (em outro terminal):
+    Terminal 1:
+        >cd api
+        >npm start 
+    Terminal 2:
+        >cd byte-bank-broker
+        >ng serve --open
+   Logamos com o usuário de desenvolvimento "alvaro" e senha "123".
+5. Criamos a "Interface" que irá representar o modelo de dados vindo do "back-end":     
+    >ng generate interface acoes/modelo/acoes
+    @see byte-bank-broker\src\app\acoes\modelo\acoes.ts
+6. Criamos o serviço que irá acessar o "back-end":
+    >ng generate service acoes/acoes
+    @see byte-bank-broker\src\app\acoes\acoes.service.ts
+7. Modificamos o template e o componente "acoes" para mostrar a lista de ações disponíveis no back-end,
+   para tal, utilizamos o conceito de subscrição de "Observables":
+    @see byte-bank-broker\src\app\acoes\acoes.component.html
+    @see byte-bank-broker\src\app\acoes\acoes.component.ts
+   Um Observable é interessante quando queremos buscar uma coleção de valores ou eventos de forma reativa.
+
+Capítulo 02: Operadores de transformação
 
 1. 
