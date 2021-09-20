@@ -53,3 +53,17 @@ Capítulo 02: Operadores de transformação
    usando o unsubscribe (no ciclo de vida do componente), quanto o pipe async (no template):
     @see byte-bank-broker\src\app\acoes\acoes.component.ts
     @see byte-bank-broker\src\app\acoes\acoes.component.html
+
+Capítulo 03: Operadores de fluxo
+#switchMap, #merge
+
+1. Modificamos o código do serviço que realiza a busca de ações a partir de parametros:
+    @see byte-bank-broker\src\app\acoes\acoes.service.ts
+2. Modificamos o Observable do componente para modificar o fluxo e incluir o parametro:
+    @see byte-bank-broker\src\app\acoes\acoes.component.ts
+3. Aglutinamos (com merge) os 2 fluxos de informação: um sem o parametro (que tras todas os objetos), e outro 
+   incluindo o parametro resultado da digitacao no input busca:
+    @see byte-bank-broker\src\app\acoes\acoes.component.ts 
+
+Capítulo 04: Operadores de filtro
+

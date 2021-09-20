@@ -3,7 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { Acoes } from './modelo/acoes';
 import {AcoesService } from './acoes.service';
-import { Subscription } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-acoes',
@@ -12,20 +13,34 @@ import { Subscription } from 'rxjs';
 })
 export class AcoesComponent /*implements OnInit, OnDestroy*/ {
   acoesInput = new FormControl();
+  
+  /** Observable que retorna todas as acoes */
+  todasAcoes$ = this.acoesService.getAcoes().pipe(
+    tap(()=>{console.log('Fluxo de todas acoes');})
+  );
+  /** Observable que retorna as acoes filtradas pelo evento do input */
+  filtroPeloInput$ = this.acoesInput.valueChanges.pipe(
+    tap(()=>{console.log('Fluxo do filtro pelo input')}),
+    switchMap((valorDigitado)=>this.acoesService.getAcoes(valorDigitado))
+  );
+  /** Aglutina os dois observables */
+  acoes$ = merge(this.todasAcoes$,this.filtroPeloInput$);
+
+  constructor(private acoesService: AcoesService) {}  
+
+  /*
+   Para permitir  uso do "pipe sync" no template, e deixar o 
+   framework gerenciar a vida do observável:
+   
+   acoes$ = this.acoesService.getAcoes();
+  */
+
   /*
   Controle da subscrição na próprio componente:
 
   acoes: Acoes;
   private subscription: Subscription;
   */
-
-  /**
-   * Para permitir  uso do "pipe sync" no template, e deixar o 
-   * framework gerenciar a vida do observável
-   */
-  acoes$ = this.acoesService.getAcoes();
-
-  constructor(private acoesService: AcoesService) {}
 
   /*
   Controle da subscrição usando ciclo de vida do componente:

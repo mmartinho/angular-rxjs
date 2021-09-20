@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map, pluck, tap } from 'rxjs/operators';
@@ -14,8 +14,11 @@ export class AcoesService {
   /**
    * @returns 
    */
-  getAcoes(){
-    return this.httpClient.get<AcoesAPI>('http://localhost:3000/acoes')
+  getAcoes(valor?: string) {
+    /** Repassa parametro de busca, se existirem */
+    const params = valor ? new HttpParams().append('valor',valor) : undefined; 
+    /** Realiza a consulta na API (retorna um "observable") */
+    return this.httpClient.get<AcoesAPI>('http://localhost:3000/acoes', {params: params})
       .pipe(
         // tap((valor)=>console.log(valor)),
         pluck('payload'),  // alterado: map((api)=>api.payload),
