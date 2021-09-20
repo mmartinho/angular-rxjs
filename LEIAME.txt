@@ -66,4 +66,10 @@ Capítulo 03: Operadores de fluxo
     @see byte-bank-broker\src\app\acoes\acoes.component.ts 
 
 Capítulo 04: Operadores de filtro
+#debounceTime, #distinctUntilChanged
+
+1. Modificamos o Observable do componente para aguardar um tempo de espera:
+    @see byte-bank-broker\src\app\acoes\acoes.component.ts
+2. Modificamos o Observable do componente para evitar duplicação de termos de busca:
+    @see byte-bank-broker\src\app\acoes\acoes.component.ts
 
